@@ -3,9 +3,20 @@ Required contents of a backup medium:
 - data itself
 
 It should also contain enough metadata to re-create the rules from which it was created in case the master config is lost and only the backups exist.
+Actually, that's not the most important one. The really important one is enough metadata to re-create the database of things backed up (fingerprints for volatile files etc.)
 
 It will probably also require a directory of some sort. Might be the same as the metadata above, or different.
 
 
 #
-A file can be STABLE (its content doesn't change: if it's on a backup, it doesn't need to go on a new one; e.g. photos) or VOLATILE (its content changes, and an existing backup can contain an out-of-date version; e.g. documents)
+A file can be STABLE (its content doesn't change: if it's on a backup, it doesn't need to go on a new one; e.g. photos) or VOLATILE (its content changes, and an existing backup can contain an out-of-date version; e.g. documents).
+
+
+#
+Basic components:
+- ruleset for which files to backup, and their category (stable vs. volatile)
+- database of existing backup media:
+	- what's stored on them
+	- creation date
+	- information about the contents of volatile files on them, for purpose of out-of-date checks. These could be file size, hash, and other data.
+- process of creating a new backup medium
