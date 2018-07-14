@@ -1,0 +1,11 @@
+#
+Required contents of a backup medium:
+- data itself
+
+It should also contain enough metadata to re-create the rules from which it was created in case the master config is lost and only the backups exist.
+
+It will probably also require a directory of some sort. Might be the same as the metadata above, or different.
+
+
+#
+A file can be STABLE (its content doesn't change: if it's on a backup, it doesn't need to go on a new one; e.g. photos) or VOLATILE (its content changes, and an existing backup can contain an out-of-date version; e.g. documents)
