@@ -18,5 +18,14 @@ Basic components:
 - database of existing backup media:
 	- what's stored on them
 	- creation date
-	- information about the contents of volatile files on them, for purpose of out-of-date checks. These could be file size, hash, and other data.
+	- information about the contents of volatile files on them, for purpose of out-of-date checks. These could be file size, hash, and other data; "fingerprint".
 - process of creating a new backup medium
+
+
+#
+Basic process:
+The master component is a collection of ARTEFACTS. That is handed down the pipeline and adjusted as necessary.
+An artefact has:
+- Source file path+name
+- Path+name within archive
+- Category (stable/volatile)
