@@ -1,6 +1,7 @@
 #pragma once
 
 #include "RuleSet.hh"
+#include "VolumeRegistry.hh"
 
 #include <memory>
 

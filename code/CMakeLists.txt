@@ -1,4 +1,5 @@
 find_package(Qt5 REQUIRED COMPONENTS Core)
+find_package(Boost REQUIRED)
 
 
 function(GenerateFileSuite Result)
@@ -23,6 +24,8 @@ endfunction()
 
 
 GenerateFileSuite(Files
+	src/Artefact
+	src/ArtefactName
 	src/ArtefactSet
 	src/DevelopmentProfile
 	src/Profile
@@ -43,8 +46,9 @@ configure_file(
 add_executable(AnyBak
 	${Files}
 	src/main.cpp
+	cfg_in/Paths.hpp
 	${DevelopmentHeaderDir}/development/Paths.hpp
 )
 
 target_include_directories(AnyBak PRIVATE ${DevelopmentHeaderDir})
-target_link_libraries(AnyBak PRIVATE Qt5::Core)
+target_link_libraries(AnyBak PRIVATE Qt5::Core Boost::boost)

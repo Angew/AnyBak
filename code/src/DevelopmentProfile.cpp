@@ -21,9 +21,18 @@ namespace {
 class DevelopmentRuleSet : public RuleSet
 {
 public:
-	ArtefactSet getArtefactsNotIn(const VolumeRegistry& volumeRegistry) const override
+	ArtefactSet getArtefactsNotIn(const VolumeRegistry &volumeRegistry) const override
 	{
-		
+		static const ArtefactName names = {
+			sourceArtefactDirectory().absoluteFilePath("a1.txt")
+		};
+
+		ArtefactSet result;
+		for (const auto &name : names) {
+			if (!volumeRegistry.contains(name)) {
+				result.add({name, name, QFileInfo{name}.fileName()});
+			}
+		}
 	}
 };
 

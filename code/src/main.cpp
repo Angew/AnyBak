@@ -9,6 +9,6 @@ int main()
 	RuleSet& ruleSet = profile->getRuleSet();
 	VolumeRegistry& volumeRegistry = profile->getVolumeRegistry();
 	ArtefactSet newArtefacts = ruleSet.getArtefactsNotIn(volumeRegistry);
-	VolumeSet newVolumes = something.createVolumeSet(ruleSet, *newArtefacts);
+	VolumeSet newVolumes = something.createVolumeSet(ruleSet, newArtefacts);
 	volumeRegistry->commit(newVolumes);
 }

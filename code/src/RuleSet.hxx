@@ -8,5 +8,5 @@
 class RuleSet
 {
 public:
-	virtual ArtefactSet getArtefactsNotIn(const VolumeRegistry&) const = 0;
+	virtual ArtefactSet getArtefactsNotIn(const VolumeRegistry &) const = 0;
 };
