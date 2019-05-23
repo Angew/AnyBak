@@ -33,6 +33,8 @@ public:
 				result.add({name, name, QFileInfo{name}.fileName()});
 			}
 		}
+
+		return result;
 	}
 };
 
@@ -47,7 +49,11 @@ public:
 //--------------------------------------------------------------------------------------------------
 class DevelopmentVolumeRegistry : public VolumeRegistry
 {
-
+public:
+	bool contains(const ArtefactName &/*queriedName*/) const override
+	{
+		return false;
+	}
 };
 
 

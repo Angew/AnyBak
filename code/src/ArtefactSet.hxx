@@ -7,10 +7,12 @@
 
 class ArtefactSet
 {
+private:
+	std::unordered_set<Artefact, Artefact::NameBased::Hash, Artefact::NameBased::Equality> artefacts;
+
 public:
 	bool add(const Artefact &);
 	bool add(Artefact &&);
 
-private:
-	std::unordered_set<Artefact, Artefact::NameBased::Hash, Artefact::NameBased::Equality> artefacts;
+	decltype(artefacts) takeAll();
 };

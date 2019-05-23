@@ -5,10 +5,10 @@
 
 int main()
 {
-	std::unique_ptr<Profile> profile = createDevelopmentProfile();
+	auto profile = createDevelopmentProfile();
 	RuleSet& ruleSet = profile->getRuleSet();
 	VolumeRegistry& volumeRegistry = profile->getVolumeRegistry();
-	ArtefactSet newArtefacts = ruleSet.getArtefactsNotIn(volumeRegistry);
-	VolumeSet newVolumes = something.createVolumeSet(ruleSet, newArtefacts);
-	volumeRegistry->commit(newVolumes);
+	auto newArtefacts = ruleSet.getArtefactsNotIn(volumeRegistry);
+	VolumeSet newVolumes = VolumeSet::createFromArtefacts(ruleSet, std::move(newArtefacts));
+	volumeRegistry.commit(newVolumes);
 }

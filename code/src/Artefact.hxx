@@ -30,6 +30,14 @@ public:
 		};
 	};
 
+	struct SizeBased
+	{
+		struct OrderingFormHighest
+		{
+			bool operator() (const Artefact &lhs, const Artefact &rhs) const { return lhs.getSize() > rhs.getSize(); }
+		};
+	};
+
 private:
 	ArtefactName name;
 	QFileInfo originalPath;
