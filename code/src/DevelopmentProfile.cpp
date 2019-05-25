@@ -30,7 +30,7 @@ public:
 		ArtefactSet result;
 		for (const auto &name : names) {
 			if (!volumeRegistry.contains(name)) {
-				result.add({name, name, QFileInfo{name}.fileName()});
+				result.add({name, {name}, {QFileInfo{name}.fileName()}});
 			}
 		}
 
@@ -71,6 +71,11 @@ public:
 	DevelopmentProfile() :
 		volumeRegistry{std::make_unique<DevelopmentVolumeRegistry>()}
 	{}
+
+	bool createVolumes(VolumeSet &volumes) const override
+	{
+		
+	}
 
 protected:
 	RuleSet& getRuleSet_impl() const override

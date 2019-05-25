@@ -30,6 +30,7 @@ GenerateFileSuite(Files
 	src/DevelopmentProfile
 	src/Profile
 	src/RuleSet
+	src/Volume
 	src/VolumeRegistry
 	src/VolumeSet
 )

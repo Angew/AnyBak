@@ -1,8 +1,19 @@
 #include "VolumeSet.hpp"
 
+#include "ArtefactSet.hpp"
+
+#include <set>
 
 
-VolumeSet VolumeSet::createFromArtefacts(const RuleSet &ruleSet, ArtefactSet artefactSet)
+
+//--------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
+//
+// Class VolumeSet
+//
+//--------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
+VolumeSet VolumeSet::createFromArtefacts(const RuleSet &/*ruleSet*/, ArtefactSet artefactSet)
 {
 	VolumeSet result;
 	auto inputArtefacts = artefactSet.takeAll();
@@ -10,4 +21,16 @@ VolumeSet VolumeSet::createFromArtefacts(const RuleSet &ruleSet, ArtefactSet art
 		std::make_move_iterator(inputArtefacts.begin()),
 		std::make_move_iterator(inputArtefacts.end())
 	};
+	auto& volume = result.addVolume();
+	while (!artefacts.empty()) {
+		volume.add(std::move(*artefacts.begin()));
+		artefacts.erase(artefacts.begin());
+	}
+	return result;
+}
+//--------------------------------------------------------------------------------------------------
+Volume& VolumeSet::addVolume()
+{
+	volumes.emplace_back();
+	return volumes.back();
 }

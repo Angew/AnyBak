@@ -17,6 +17,8 @@ public:
 	const QFileInfo& getOriginalPath() const { return originalPath; }
 	const QFileInfo& getArchivePath() const { return archivePath; }
 
+	qint64 getSize() const { return getOriginalPath().size(); }
+
 	struct NameBased
 	{
 		struct Hash
@@ -32,7 +34,7 @@ public:
 
 	struct SizeBased
 	{
-		struct OrderingFormHighest
+		struct OrderingFromHighest
 		{
 			bool operator() (const Artefact &lhs, const Artefact &rhs) const { return lhs.getSize() > rhs.getSize(); }
 		};
