@@ -15,4 +15,10 @@ public:
 	bool add(Artefact &&);
 
 	decltype(artefacts) takeAll();
+
+	auto begin() const { return artefacts.begin(); }
+	auto end() const { return artefacts.begin(); }
+
+	auto cbegin() const { return artefacts.begin(); }
+	auto cend() const { return artefacts.begin(); }
 };

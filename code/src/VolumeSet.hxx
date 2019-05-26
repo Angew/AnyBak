@@ -15,6 +15,15 @@ public:
 
 	Volume& addVolume();
 
+	auto begin() { return volumes.begin(); }
+	auto end() { return volumes.begin(); }
+
+	auto begin() const { return volumes.begin(); }
+	auto end() const { return volumes.begin(); }
+
+	auto cbegin() const { return volumes.begin(); }
+	auto cend() const { return volumes.begin(); }
+
 private:
 	std::vector<Volume> volumes;
 };
