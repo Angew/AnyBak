@@ -1,4 +1,5 @@
 find_package(Qt5 REQUIRED COMPONENTS Core)
+find_package(ICU REQUIRED COMPONENTS i18n)
 find_package(Boost REQUIRED)
 
 
@@ -53,3 +54,8 @@ add_executable(AnyBak
 
 target_include_directories(AnyBak PRIVATE ${DevelopmentHeaderDir})
 target_link_libraries(AnyBak PRIVATE Qt5::Core Boost::boost)
+set_property(
+	TARGET AnyBak
+	PROPERTY VS_DEBUGGER_ENVIRONMENT
+	"PATH=$<TARGET_FILE_DIR:Qt5::Core>;$<TARGET_FILE_DIR:ICU::i18n>/../bin64;$ENV{PATH}"
+)
