@@ -26,7 +26,7 @@ class DevelopmentRuleSet : public RuleSet
 public:
 	ArtefactSet getArtefactsNotIn(const VolumeRegistry &volumeRegistry) const override
 	{
-		static const ArtefactName names = {
+		static const ArtefactName names[] = {
 			sourceArtefactDirectory().absoluteFilePath("a1.txt")
 		};
 
@@ -72,12 +72,14 @@ class DevelopmentProfile : public Profile
 {
 public:
 	DevelopmentProfile() :
+		ruleSet{std::make_unique<DevelopmentRuleSet>()},
 		volumeRegistry{std::make_unique<DevelopmentVolumeRegistry>()}
 	{}
 
 	bool createVolumes(VolumeSet &volumes) const override
 	{
 		auto stage = volumeStageDirectory();
+		stage.mkpath(".");
 		int retries = 5;
 		const auto date = QDate::currentDate();
 		static const QString StagePattern{"%1-%2-%3-stage"};
@@ -97,6 +99,7 @@ public:
 			if (!stage.exists(stageName)) {
 				--retries;
 			}
+			stageName.chop(3);
 		}
 		if (!retries) {
 			return false;
